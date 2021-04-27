@@ -63,3 +63,66 @@ extension Board.Piece {
     var row: Int { index / 8 }
     var column: Int { index % 8 }
 }
+
+/*
+
+ { command: Move, data: { id: "", from: 12, to: 23 } }
+
+*/
+class WebSocket {
+    private func msgHandler(_ msg: URLSessionWebSocketTask.Message) {
+        guard case .string(let text) = msg else {
+            NSLog("error with type socket message")
+            return
+        }
+        guard let data = text.toDictionary else { return }
+        guard let command = data["command"] as? String else {
+            NSLog("error with parsing event -> \(text)")
+            return
+        }
+         
+        switch command {
+        case "move":
+            NSLog("socket was successfully connected")
+
+        default: NSLog("we got unsupported socket message -> \(text)")
+        }
+        
+    }
+}
+
+extension String {
+    var toDictionary: [String: Any]? {
+        if let data = self.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                NSLog(error.localizedDescription)
+            }
+        }
+        return nil
+    }
+}
+
+extension WebSocket {
+    enum Command: String {
+        case move
+    }
+}
+
+struct SocketCommand: Codable {
+    let command: String
+    let data: String
+}
+
+extension String {
+    var toCommand: SocketCommand? {
+        guard let data = self.data(using: .utf8) else { return nil }
+        do {
+            return try JSONDecoder().decode(SocketCommand.self, from: data)
+        } catch {
+            NSLog(error.localizedDescription)
+            return nil
+        }
+    }
+}

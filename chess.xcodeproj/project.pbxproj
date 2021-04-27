@@ -15,6 +15,9 @@
 		3A88B3982632AEAB002041C4 /* BoardLettersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A88B3972632AEAB002041C4 /* BoardLettersView.swift */; };
 		3A88B39C2632AEF7002041C4 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A88B39B2632AEF7002041C4 /* Board.swift */; };
 		3A88B3A12632B2C6002041C4 /* Chess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A88B3A02632B2C6002041C4 /* Chess.swift */; };
+		3A88B3B92636E5C7002041C4 /* ChessBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A88B3B82636E5C7002041C4 /* ChessBoard.swift */; };
+		3A88B3C02637F0E8002041C4 /* GameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A88B3BF2637F0E8002041C4 /* GameList.swift */; };
+		3A88B3C52637F87F002041C4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A88B3C42637F87F002041C4 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		3A88B3972632AEAB002041C4 /* BoardLettersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardLettersView.swift; sourceTree = "<group>"; };
 		3A88B39B2632AEF7002041C4 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		3A88B3A02632B2C6002041C4 /* Chess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chess.swift; sourceTree = "<group>"; };
+		3A88B3B82636E5C7002041C4 /* ChessBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChessBoard.swift; sourceTree = "<group>"; };
+		3A88B3BF2637F0E8002041C4 /* GameList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameList.swift; sourceTree = "<group>"; };
+		3A88B3C42637F87F002041C4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,8 @@
 		3A6615562631A1C90035DEF2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3A88B3C32637F86A002041C4 /* Login */,
+				3A88B3BE2637F0D0002041C4 /* GameList */,
 				3A88B39F2632B2B7002041C4 /* Chess */,
 				3A6615572631A1D10035DEF2 /* Board */,
 			);
@@ -101,6 +109,7 @@
 			children = (
 				3A88B3932632AE90002041C4 /* BoardNumbersView.swift */,
 				3A88B3972632AEAB002041C4 /* BoardLettersView.swift */,
+				3A88B3B82636E5C7002041C4 /* ChessBoard.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +128,22 @@
 				3A88B3A02632B2C6002041C4 /* Chess.swift */,
 			);
 			path = Chess;
+			sourceTree = "<group>";
+		};
+		3A88B3BE2637F0D0002041C4 /* GameList */ = {
+			isa = PBXGroup;
+			children = (
+				3A88B3BF2637F0E8002041C4 /* GameList.swift */,
+			);
+			path = GameList;
+			sourceTree = "<group>";
+		};
+		3A88B3C32637F86A002041C4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3A88B3C42637F87F002041C4 /* LoginView.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,9 +218,12 @@
 				3A88B3A12632B2C6002041C4 /* Chess.swift in Sources */,
 				3A88B3942632AE90002041C4 /* BoardNumbersView.swift in Sources */,
 				3A6615592631A1E30035DEF2 /* BoardView.swift in Sources */,
+				3A88B3C52637F87F002041C4 /* LoginView.swift in Sources */,
 				3A88B39C2632AEF7002041C4 /* Board.swift in Sources */,
+				3A88B3B92636E5C7002041C4 /* ChessBoard.swift in Sources */,
 				3A6615462631A1A50035DEF2 /* chessApp.swift in Sources */,
 				3A88B3982632AEAB002041C4 /* BoardLettersView.swift in Sources */,
+				3A88B3C02637F0E8002041C4 /* GameList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,9 +353,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"chess/Preview Content\"";
+				DEVELOPMENT_TEAM = J57LR5C228;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = chess/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -346,9 +375,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"chess/Preview Content\"";
+				DEVELOPMENT_TEAM = J57LR5C228;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = chess/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

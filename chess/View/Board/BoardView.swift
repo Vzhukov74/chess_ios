@@ -29,12 +29,9 @@ struct BoardView: View {
                     HStack(spacing: 0) {
                         BoardNumbersView()
                             .frame(width: squareSideSize)
-                        GeometryReader { geo in
-                            let squareSideSize = geo.size.width / 8
-                            ZStack {
-                                self.squares(with: squareSideSize)
-                                self.chessPieces(with: squareSideSize)
-                            }
+                        ZStack {
+                            ChessBoard()
+                            self.chessPieces()
                         }
                             .frame(width: squareSideSize * 8, height: squareSideSize * 8)
                         BoardNumbersView()
@@ -57,46 +54,33 @@ struct BoardView: View {
         }
 
     }
-    
+        
     @ViewBuilder
-    private func squares(with width: CGFloat) -> some View {
-        ForEach(0..<8) { row in
-            ForEach(0..<8) { column in
-                let isWhiteSquare = ((row % 2 == 0) && (column % 2 == 0)) || ((row % 2 != 0) && (column % 2 != 0))
-                let x: CGFloat = width / 2 + width * CGFloat(column)
-                let y: CGFloat = width / 2 + width * CGFloat(row)
+    private func chessPieces() -> some View {
+        GeometryReader { geo in
+            let width = geo.size.width / 8
+            ForEach(model.pieces.indices) { index in
+                let piece = model.pieces[index]
+                let x: CGFloat = width / 2 + width * CGFloat(piece.column)
+                let y: CGFloat = width / 2 + width * CGFloat(piece.row)
+                let position: CGPoint = CGPoint(x: x, y: y)
                 
-                Rectangle()
-                    .foregroundColor(isWhiteSquare ? .whiteSquare : .blackSquare)
+                Image(piece.figure)
                     .frame(width: width, height: width)
-                    .position(x: x, y: y)
+                    .position(withAnimation { piece.index == movingIndex ? dragPosition : position })
+                    .zIndex(piece.isSelect ? 1 : 0)
+                    .gesture(
+                        DragGesture()
+                            .onChanged { value in
+                                dragPosition = value.location
+                                movingIndex = model.pieces[index].index
+                            }
+                            .onEnded { value in
+                                model.pieces[index].index = findIndex(for: value.location, with: width)
+                                movingIndex = nil
+                            }
+                    )
             }
-        }
-    }
-    
-    @ViewBuilder
-    private func chessPieces(with width: CGFloat) -> some View {
-        ForEach(model.pieces.indices) { index in
-            let piece = model.pieces[index]
-            let x: CGFloat = width / 2 + width * CGFloat(piece.column)
-            let y: CGFloat = width / 2 + width * CGFloat(piece.row)
-            let position: CGPoint = CGPoint(x: x, y: y)
-            
-            Image(piece.figure)
-                .frame(width: width, height: width)
-                .position(withAnimation { piece.index == movingIndex ? dragPosition : position })
-                .zIndex(piece.isSelect ? 1 : 0)
-                .gesture(
-                    DragGesture()
-                        .onChanged { value in
-                            dragPosition = value.location
-                            movingIndex = model.pieces[index].index
-                        }
-                        .onEnded { value in
-                            model.pieces[index].index = findIndex(for: value.location, with: width)
-                            movingIndex = nil
-                        }
-                )
         }
     }
     
